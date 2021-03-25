@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style-type: none;
+            
+        }
+    
+        h2,
+        div {
+            text-align: center;
+            margin: 1em 0 1em 0;
+        }
+    
+        button {
+            width: 120px;
+            height: 40px;
+            background-color: -internal-light-dark(rgb(239, 239, 239), rgb(74, 74, 74));
+            outline: none;
+            border: none;
+            color: blacks;
+            font-weight: 700;
+            border-radius: 3px;
+    
+        }
+    
+        .button.black {
+            background: #303030;
+            background: -webkit-gradient(linear, 0 0, 0 bottom, from(#656565), to(#444));
+            background: -moz-linear-gradient(#656565, #444);
+            background: linear-gradient(#656565, #444);
+            border: solid 1px #535353;
+            border-bottom: solid 3px #414141;
+            box-shadow: inset 0 0 0 1px #939393;
+            color: #fff;
+            text-shadow: 0 1px 0 #2f2f2f; }
+    
+        .button.black:hover {
+            background: #4c4c4c;
+            background: -webkit-gradient(linear, 0 0, 0 bottom, from(#4c4c4c), to(#565656));
+            background: -moz-linear-gradient(#4c4c4c, #565656);
+            background: linear-gradient(#4c4c4c, #565656);
+            border: solid 1px #464646;
+            border-bottom: solid 3px #414141;
+            box-shadow: inset 0 0 0 1px #818181; }
+    
+        .button.black:active {
+            background: #474747;
+            background: -webkit-gradient(linear, 0 0, 0 bottom, from(#474747), to(#444));
+            background: -moz-linear-gradient(#474747, #444);
+            background: linear-gradient(#474747, #444);
+            border: solid 1px #2f2f2f;
+            box-shadow: inset 0 10px 15px 0 #3e3e3e; }
+    </style>
+</head>
+
+
+
+
+<body>
+    
+
+    <script>
+        function connectToBSC() {
+            if (typeof window.ethereum == 'undefined') {
+                alert('MetaMask is not installed!');
+            } else {
+                if (window.ethereum.chainId == "0x38") {
+                    alert("You are already connected to the network with ID 0x38")
+                }
+
+                const chain = {
+                    chainId: "0x38",
+                    chainName: "Binance Smart Chain",
+                    rpcUrls: ["https://bsc-dataseed.binance.org/"],
+                    iconUrls: [
+                        "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20201110/550eda20-1b9a-4bc7-9a65-e4a329e8bb57.png"
+                    ],
+                    nativeCurrency: {
+                        name: "BNB",
+                        symbol: "BNB",
+                        decimals: 18,
+                    },
+                    blockExplorerUrls: ["https://www.bscscan.com/"]
+                };
+                window.ethereum.request({
+                    method: "wallet_addEthereumChain",
+                    params: [chain],
+                }).catch((error) => {
+                    console.log(error);
+                    alert("An error has occurred. Please make sure the metamask is ready to go. See error in log");
+                });
+            }
+        }
+    </script>
+
+    <a href="https://github.com/you"><img loading="lazy" width="149" height="149"
+        src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149"
+        alt="Fork me on GitHub" data-recalc-dims="1"></a>
+
+    <div><img src="./bnb.png"></div>
+    <h2>Connect to BSC with Metamask</h2>
+    <div><button class="button black" onclick="connectToBSC()">connect!</button></div>
+
+</body>
+
+</html>
